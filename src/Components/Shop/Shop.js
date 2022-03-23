@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { addToDb, getStoredCart } from '../../utilities/fakedb'
 import Product from '../Product/Product';
 import './Shop.css';
+import Cart from '../Cart/Cart';
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
@@ -13,12 +15,45 @@ const Shop = () => {
             .then(data => setProducts(data))
     }, []);
 
-    const handleAddToCart = (product) => {
-        console.log(product);
-        // cart.push(product);
 
-        const newCart = [...cart, product];
+
+
+
+    useEffect(() => {
+        const storedCart = getStoredCart();
+        const savedCart = [];
+        // console.log(storedCart);
+        for (const id in storedCart) {
+            // console.log(id);
+            const addedProduct = products.find(product => product.id === id);
+            if (addedProduct) {
+                const quantity = storedCart[id];
+                addedProduct.quantity = quantity;
+                // console.log(addedProduct);
+                savedCart.push(addedProduct);
+            }
+        }
+        setCart(savedCart);
+    }, [products])
+
+
+    const handleAddToCart = (selectedProduct) => {
+        console.log(selectedProduct);
+        let newCart = [];
+        // cart.push(product);
+        const exists = cart.find(product => product.id === selectedProduct.id);
+        if (!exists) {
+            selectedProduct.quantity = 1;
+            newCart = [...cart, selectedProduct];
+        }
+        else {
+            const rest = cart.filter(product => product.id !== selectedProduct.id);
+            exists.quantity = exists.quantity + 1;
+            newCart = [...rest, exists];
+        }
+        // const newCart = [...cart, selectedProduct];
         setCart(newCart);
+        addToDb(selectedProduct.id);
     }
 
     return (
@@ -37,8 +72,7 @@ const Shop = () => {
             </div>
 
             <div className="cart-container">
-                <h4>Order Summary</h4>
-                <p>selected item: {cart.length}</p>
+                <Cart cart={cart}></Cart>
             </div>
 
         </div>
