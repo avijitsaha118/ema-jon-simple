@@ -8,11 +8,13 @@
 // 8. createUserWithEmailAndPassword from react-firebase-hook
 // 9. if user is created redirected to the expected page 
 // 10. useSignInWithEmailAndPassword use this for sign in 
+// 11. create requireAuth component ==> check user exist also track user loaction 
+// 12. in route wrap protected component by using require auth component 
 
 // { faLitecoinSign, faTools } from "@fortawesome/free-solid-svg-icons"
 // import { Component } from "react"
 
-// hosting steps
+// Firebase hosting steps
 // 1. npm install -g firebase-faTools
 // 2. firebase login 
 // 3. firebase init 
