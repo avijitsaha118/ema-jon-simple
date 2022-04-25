@@ -15,7 +15,8 @@
 // import { Component } from "react"
 
 // Firebase hosting steps
-// 1. npm install -g firebase-faTools
-// 2. firebase login 
+// 1. npm install -g firebase-faTools(one time for your computer)
+// 2. firebase login (one time)
 // 3. firebase init 
-// 4. firebase deploy 
+// 4. npm run build (build your project)
+// 5. firebase deploy 

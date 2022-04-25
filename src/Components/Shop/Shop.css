@@ -12,6 +12,18 @@
 .cart-container{
     background-color: rgba(255, 153, 0, 0.3);
 }
+.pagination button{
+   margin-right: 10px;
+   background-color: lightblue ;
+   border: 1px solid orange;
+
+}
+
+.pagination .selected{
+    background-color: orange;
+    color: white;
+
+}
 
 @media screen and (max-width:1100px) {
     .products-container{
